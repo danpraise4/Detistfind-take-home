@@ -19,6 +19,11 @@ npm run build
 npm run preview
 ```
 
+Vercel Hosted 
+```
+https://detistfind-take-home.vercel.app/
+```
+
 ## What's Included
 
 This project implements a Practice Summary Card component that shows:
