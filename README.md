@@ -241,3 +241,4 @@ The focus was on **visual polish and code quality** rather than adding extra fea
 ---
 
 Built with attention to detail and industry best practices. 🎯
+# Detistfind-take-home
