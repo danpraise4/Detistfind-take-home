@@ -1,0 +1,64 @@
+.app {
+  min-height: 100vh;
+  background-color: var(--background-light);
+}
+
+.header {
+  background: var(--white);
+  padding: 32px 24px;
+  box-shadow: var(--shadow-sm);
+  border-bottom: 2px solid var(--primary-green);
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 24px 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .main {
+    padding: 24px 16px;
+  }
+
+  .cardsContainer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cardsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

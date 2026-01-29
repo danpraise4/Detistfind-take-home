@@ -1,0 +1,128 @@
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 500px;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  border-color: var(--primary-green);
+}
+
+.card[data-status='high-performer'] {
+  border-left: 4px solid var(--status-high);
+}
+
+.card[data-status='at-risk'] {
+  border-left: 4px solid var(--status-risk);
+}
+
+.card[data-status='stable'] {
+  border-left: 4px solid var(--status-stable);
+}
+
+.header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+}
+
+.practiceName {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.location {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.statusContainer {
+  margin-top: -8px;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: var(--background-light);
+  border-radius: 8px;
+}
+
+.metricLabel {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.metricValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-green);
+  line-height: 1.2;
+}
+
+.metricUnit {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.trendSection {
+  margin-top: 8px;
+}
+
+.trendTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .practiceName {
+    font-size: 20px;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .metricValue {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    padding: 28px;
+  }
+}

@@ -1,0 +1,45 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.container[data-status='high-performer'] {
+  background-color: rgba(39, 174, 96, 0.1);
+  color: var(--status-high);
+}
+
+.container[data-status='at-risk'] {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: var(--status-risk);
+}
+
+.container[data-status='stable'] {
+  background-color: rgba(243, 156, 18, 0.1);
+  color: var(--status-stable);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.container[data-status='high-performer'] .dot {
+  background-color: var(--status-high);
+}
+
+.container[data-status='at-risk'] .dot {
+  background-color: var(--status-risk);
+}
+
+.container[data-status='stable'] .dot {
+  background-color: var(--status-stable);
+}
