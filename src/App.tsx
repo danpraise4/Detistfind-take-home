@@ -1,4 +1,3 @@
-import React from 'react';
 import { PracticeSummary } from './types';
 import { PracticeSummaryCard } from './components/PracticeSummaryCard/PracticeSummaryCard';
 import styles from './App.module.css';
@@ -44,8 +43,31 @@ function App() {
   return (
     <div className={styles.app}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Practice Summary Dashboard</h1>
-        <p className={styles.subtitle}>Key metrics and insights for your practices</p>
+        <div className={styles.headerContent}>
+          <div className={styles.leftSection}>
+            <div className={styles.logoContainer}>
+              <img 
+                src="/assets/logo-dentistfind.png" 
+                alt="DentistFind Logo" 
+                className={styles.logo}
+              />
+            </div>
+            <div className={styles.divider}></div>
+            <div className={styles.headerText}>
+              <h1 className={styles.title}>Practice Summary</h1>
+              <p className={styles.subtitle}>Dashboard</p>
+            </div>
+          </div>
+          <div className={styles.rightSection}>
+            <div className={styles.headerActions}>
+              <div className={styles.breadcrumb}>
+                <span className={styles.breadcrumbItem}>Dashboard</span>
+                <span className={styles.breadcrumbSeparator}>/</span>
+                <span className={styles.breadcrumbItemActive}>Practices</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
       <main className={styles.main}>
         <div className={styles.cardsContainer}>

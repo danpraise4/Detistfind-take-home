@@ -1,4 +1,3 @@
-import React from 'react';
 import { PracticeSummary, StatusType } from '../../types';
 import { StatusIndicator } from '../StatusIndicator/StatusIndicator';
 import { TrendVisualization } from '../TrendVisualization/TrendVisualization';

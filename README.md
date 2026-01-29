@@ -1,244 +1,146 @@
-# Practice Summary Card Assessment
+# Practice Summary Card
 
-A React + TypeScript application showcasing a polished Practice Summary Card component for dental practice metrics visualization.
+A React + TypeScript dashboard component for displaying dental practice metrics. Built as a take-home assessment for DentistFind.
 
-## 🚀 Quick Start
+## Getting Started
 
-### Prerequisites
+You'll need Node.js 18+ installed. Then:
 
-- Node.js 18+ and npm/yarn/pnpm
+```bash
+npm install
+npm run dev
+```
 
-### Installation & Running
+The app will open at `http://localhost:5173`. That's it!
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+To build for production:
+```bash
+npm run build
+npm run preview
+```
 
-2. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
+## What's Included
 
-3. **Open your browser:**
-   Navigate to `http://localhost:5173` (or the port shown in your terminal)
+This project implements a Practice Summary Card component that shows:
 
-4. **Build for production:**
-   ```bash
-   npm run build
-   ```
+- **Practice info**: Name and location (city, country)
+- **Key metrics**: New patients, appointment requests, conversion rate, and marketing spend
+- **Status indicator**: Visual badge showing if a practice is a "High Performer" (≥20% conversion), "At Risk" (<10%), or "Stable"
+- **6-month trend**: Simple CSS bar chart showing patient growth over time
+- **Recommendations**: Two contextual suggestions based on performance
 
-5. **Preview production build:**
-   ```bash
-   npm run preview
-   ```
+The main page (`App.tsx`) displays 3 sample practice cards in a responsive grid layout.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── PracticeSummaryCard/
-│   │   ├── PracticeSummaryCard.tsx
-│   │   └── PracticeSummaryCard.module.css
-│   ├── StatusIndicator/
-│   │   ├── StatusIndicator.tsx
-│   │   └── StatusIndicator.module.css
-│   ├── TrendVisualization/
-│   │   ├── TrendVisualization.tsx
-│   │   └── TrendVisualization.module.css
-│   └── Recommendations/
-│       ├── Recommendations.tsx
-│       └── Recommendations.module.css
+│   ├── PracticeSummaryCard/     # Main card component
+│   ├── StatusIndicator/         # Status badge (High/At Risk/Stable)
+│   ├── TrendVisualization/      # 6-month bar chart
+│   └── Recommendations/         # Contextual recommendations
 ├── types/
-│   └── index.ts
+│   └── index.ts                 # TypeScript types
 ├── styles/
-│   └── theme.css
-├── App.tsx
-├── App.module.css
-└── main.tsx
+│   └── theme.css                # CSS variables and global styles
+└── App.tsx                      # Main page with 3 mock practices
 ```
 
-## 🎨 Theme
+## Tech Stack
 
-- **Primary Green:** `#27AE60`
-- **White:** `#FFFFFF`
-- Additional colors defined in `src/styles/theme.css` for consistency
-
-## 📋 Features
-
-- ✅ Practice Summary Card with header (name, location)
-- ✅ Key metrics display (new patients, appointment requests, conversion rate, optional marketing spend)
-- ✅ Status indicator based on conversion rate (High Performer ≥20%, At Risk <10%, Stable otherwise)
-- ✅ Simple 6-month trend visualization using CSS bars
-- ✅ Contextual recommendations based on performance
-- ✅ Fully responsive design (mobile, tablet, desktop)
-- ✅ Hover effects and smooth transitions
-- ✅ TypeScript with strict typing
-- ✅ CSS Modules for scoped styling
+- React 18 with TypeScript
+- Vite for build tooling
+- CSS Modules for styling
+- No external UI libraries (pure CSS)
 
 ---
 
-## Question 2: Approach, Code Quality & Decision-Making
+## Question 2: Approach & Decisions
 
-### 1. Component & Styling Decisions
+### Component Structure
 
-#### Component Structure
+I broke the card into smaller, focused components:
+- `PracticeSummaryCard` - Main container that brings everything together
+- `StatusIndicator` - Handles the status badge logic and display
+- `TrendVisualization` - Renders the 6-month bar chart
+- `Recommendations` - Generates contextual suggestions
 
-I structured the application using a **component composition pattern**:
+Why this approach? Each piece has a single job, which makes the code easier to understand, test, and modify. If I need to change how the trend chart looks, I only touch one file. Plus, these smaller components could be reused elsewhere in a real dashboard.
 
-- **Main Component:** `PracticeSummaryCard` serves as the container that orchestrates all subcomponents
-- **Subcomponents:** `StatusIndicator`, `TrendVisualization`, and `Recommendations` are small, focused, and reusable
-- **Benefits:**
-  - Single Responsibility Principle: Each component has one clear purpose
-  - Reusability: Subcomponents can be used independently or in other contexts
-  - Testability: Smaller components are easier to unit test
-  - Maintainability: Changes to one section don't affect others
+### Styling Choice: CSS Modules
 
-#### Styling Approach
+I went with CSS Modules instead of Tailwind or a UI library for a few reasons:
 
-I chose **CSS Modules** for styling:
+1. **No runtime cost** - CSS Modules compile to regular CSS, unlike styled-components
+2. **Type safety** - TypeScript knows about my class names, so typos get caught
+3. **Scoped styles** - No worrying about class name collisions
+4. **Team familiarity** - Most developers know CSS, so it's easier for others to jump in
 
-- **Why CSS Modules:**
-  - Scoped styles prevent naming conflicts
-  - No runtime overhead (unlike styled-components)
-  - TypeScript support for class names
-  - Easy to maintain and debug
-  - Familiar CSS syntax for team members
+I also set up CSS variables in `theme.css` for colors, spacing, and shadows. This makes it easy to tweak the theme globally and could support dark mode later without much refactoring.
 
-- **Theme System:**
-  - Centralized CSS variables in `theme.css` for consistent colors, spacing, and shadows
-  - Easy to update theme colors globally
-  - Supports future theming/dark mode expansion
+### Visual Consistency & Responsiveness
 
-#### Visual Consistency & Responsiveness
+For consistency, I used CSS variables everywhere - same colors, spacing scale, border radius, and shadows across all components. The typography follows a clear hierarchy (practice name is biggest, metrics are scannable, labels are subtle).
 
-- **Consistency:**
-  - CSS variables ensure consistent colors, spacing, and typography
-  - Reusable utility classes and patterns
-  - Consistent border-radius, shadows, and transitions across components
+Responsive design uses a mobile-first approach with breakpoints at 768px and 1200px. On mobile, cards stack vertically. On tablet, they show 2 columns. Desktop gets 3 columns. Font sizes and spacing scale down appropriately on smaller screens.
 
-- **Responsiveness:**
-  - Mobile-first approach with breakpoints at 768px and 1200px
-  - Grid layout adapts from 3 columns (desktop) → 2 columns (tablet) → 1 column (mobile)
-  - Font sizes and spacing scale appropriately
-  - Touch-friendly hover states and interactions
+### Scaling to a Real Dashboard
 
-### 2. Scaling & Real-World Use
+If this were going into PracticeFuel, here's what I'd do:
 
-#### Integration into PracticeFuel Dashboard
+**Design System Integration:**
+- Move theme variables to a shared tokens file that other components can use
+- Create a base `Card` component that this card extends
+- Build a component library (maybe with Storybook) so other devs can see what's available
 
-- **Design System Integration:**
-  - Extract theme variables into a shared design tokens file
-  - Create a component library with Storybook for documentation
-  - Use consistent spacing scale (4px, 8px, 12px, 16px, etc.)
+**Reusability:**
+- Extract the metric display into its own `MetricCard` component
+- Make the card accept a `variant` prop for different styles (compact, detailed, etc.)
+- Create a `TrendChart` component that could handle different time ranges
 
-- **Reusability:**
-  - Make `PracticeSummaryCard` accept a `variant` prop for different card styles
-  - Extract metric display into a reusable `MetricCard` component
-  - Create a `Card` base component with consistent styling
+**Real Data Integration:**
+- Hook up React Query or similar for API calls
+- Add loading skeletons, error states, and empty states
+- Implement data caching and refresh strategies
 
-- **State Management:**
-  - Connect to real API endpoints using React Query or similar
-  - Add loading states, error handling, and empty states
-  - Implement data caching and refresh strategies
+**Theming:**
+- Support light/dark mode using the CSS variable system
+- Allow per-client color customization (multi-tenant)
 
-- **Theming:**
-  - Support multiple themes (light/dark mode)
-  - Allow customization of primary colors per client/tenant
+### If I Had One Extra Day
 
-#### If I Had One Extra Day
+I'd focus on:
 
-- **Accessibility (WCAG 2.1 AA):**
-  - Add ARIA labels and roles
-  - Ensure keyboard navigation support
-  - Improve color contrast ratios
-  - Add focus indicators
-  - Screen reader announcements for dynamic content
+**Accessibility** - Add proper ARIA labels, keyboard navigation, focus indicators, and make sure screen readers can understand the dynamic content. Also verify color contrast meets WCAG AA standards.
 
-- **Testing:**
-  - Unit tests for components (React Testing Library)
-  - Visual regression tests (Chromatic/Percy)
-  - Integration tests for data flow
+**Testing** - Write unit tests for the status logic and recommendation generation. Maybe some visual regression tests to catch styling bugs.
 
-- **Performance:**
-  - Implement React.memo for expensive components
-  - Lazy load trend visualizations
-  - Optimize bundle size with code splitting
+**Performance** - Memoize components that don't need to re-render, lazy load the trend charts, and code split if the bundle gets large.
 
-- **Enhanced Features:**
-  - Add tooltips for metrics
-  - Implement data export (CSV/PDF)
-  - Add date range filtering
-  - Animate trend bars on mount
-  - Add comparison view between practices
+**Polish** - Add tooltips for metrics, smooth animations for the trend bars on load, and maybe a comparison view to see multiple practices side-by-side.
 
-- **Developer Experience:**
-  - Add PropTypes or stricter TypeScript types
-  - Create Storybook stories for all components
-  - Add JSDoc comments for complex logic
+### Time Breakdown
 
-### 3. Time Management
+Here's roughly how I spent the 2 hours:
 
-Rough time allocation (2 hours total):
+- **Setup (15 min)**: Vite + React + TypeScript, folder structure, basic config
+- **Types & Data (10 min)**: Defined the `PracticeSummary` type, created 3 mock practices with different conversion rates
+- **Components (45 min)**: Built the main card, status indicator, trend chart, and recommendations. Wired them all together.
+- **Styling (35 min)**: CSS Modules for all components, responsive breakpoints, hover states, visual polish
+- **Layout (10 min)**: Header with logo, grid layout for cards, responsive container
+- **README (5 min)**: Documentation and this explanation
 
-- **Setup & Project Structure (15 minutes):**
-  - Initialize Vite + React + TypeScript project
-  - Set up folder structure and configuration files
-  - Create base theme and CSS variables
+Total: ~120 minutes
 
-- **Type Definitions & Data Model (10 minutes):**
-  - Define `PracticeSummary` type
-  - Create mock data with diverse values
-  - Set up type exports
-
-- **Core Component Development (45 minutes):**
-  - Build `PracticeSummaryCard` component structure
-  - Implement `StatusIndicator` with status logic
-  - Create `TrendVisualization` with CSS bars
-  - Build `Recommendations` component with conditional logic
-  - Wire up all components together
-
-- **Styling & Polish (35 minutes):**
-  - Style all components with CSS Modules
-  - Implement responsive design (mobile, tablet, desktop)
-  - Add hover effects and transitions
-  - Ensure visual hierarchy and spacing
-  - Fine-tune colors and typography
-
-- **Wrapper Page & Layout (10 minutes):**
-  - Create `App.tsx` with grid layout
-  - Add header with title
-  - Ensure responsive card container
-
-- **README & Documentation (5 minutes):**
-  - Write setup instructions
-  - Document project structure
-  - Answer Question 2 comprehensively
-
-**Total: ~120 minutes**
-
-The focus was on **visual polish and code quality** rather than adding extra features, which aligns with the assessment's emphasis on attention to detail.
+I prioritized getting the visual details right and keeping the code clean over adding extra features. The animations and hover states were a nice touch that didn't take too long but make the UI feel more polished.
 
 ---
 
-## 🛠️ Tech Stack
+## Notes
 
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **CSS Modules** - Scoped styling
-- **CSS Variables** - Theme system
-
-## 📝 Notes
-
-- All components are functional components using React hooks
-- TypeScript strict mode enabled for type safety
-- No external UI libraries used (pure CSS for styling)
-- Trend visualization uses simple CSS bars (no chart library)
-- Recommendations are dynamically generated based on conversion rate
-
----
-
-Built with attention to detail and industry best practices. 🎯
-# Detistfind-take-home
+- All components are functional components (no classes)
+- TypeScript strict mode is enabled
+- Trend visualization uses pure CSS bars - no chart library needed
+- Recommendations are generated based on conversion rate thresholds
+- Status logic: ≥20% = High Performer, <10% = At Risk, otherwise Stable

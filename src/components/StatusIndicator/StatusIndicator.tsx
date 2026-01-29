@@ -1,4 +1,3 @@
-import React from 'react';
 import { StatusType } from '../../types';
 import styles from './StatusIndicator.module.css';
 

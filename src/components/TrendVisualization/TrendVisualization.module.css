@@ -23,17 +23,56 @@
   height: 100%;
 }
 
+.barWrapper:nth-child(1) .bar {
+  animation-delay: 0.1s;
+}
+
+.barWrapper:nth-child(2) .bar {
+  animation-delay: 0.15s;
+}
+
+.barWrapper:nth-child(3) .bar {
+  animation-delay: 0.2s;
+}
+
+.barWrapper:nth-child(4) .bar {
+  animation-delay: 0.25s;
+}
+
+.barWrapper:nth-child(5) .bar {
+  animation-delay: 0.3s;
+}
+
+.barWrapper:nth-child(6) .bar {
+  animation-delay: 0.35s;
+}
+
 .bar {
   width: 100%;
   background: linear-gradient(to top, var(--primary-green), rgba(39, 174, 96, 0.6));
   border-radius: 4px 4px 0 0;
   min-height: 4px;
-  transition: opacity 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  animation: barGrow 0.6s ease-out both;
+  transform-origin: bottom;
+}
+
+@keyframes barGrow {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 }
 
 .bar:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+  transform: scaleY(1.05);
+  filter: brightness(1.1);
 }
 
 .monthLabel {
